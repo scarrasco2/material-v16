@@ -9,7 +9,7 @@ describe('AddressComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule]
+      imports: [NoopAnimationsModule, AddressComponent],
     }).compileComponents();
   }));
 
