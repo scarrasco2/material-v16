@@ -1,0 +1,51 @@
+<table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 w-full">
+  <ng-container matColumnDef="{{ column }}" *ngFor="let column of columnsToDisplay">
+    <th mat-header-cell *matHeaderCellDef>{{ column | camelCase | uppercase}}</th>
+    <td mat-cell *matCellDef="let bill">{{ (bill[column] | typeof) === 'number' ? (bill[column] | currency) :
+      bill[column] }}</td>
+  </ng-container>
+  <ng-container matColumnDef="expand">
+    <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+    <td mat-cell *matCellDef="let bill">
+      <button mat-icon-button aria-label="expand row" (click)="toggleRow(bill)">
+        <mat-icon *ngIf="!expandedRows.includes(bill)">keyboard_arrow_down</mat-icon>
+        <mat-icon *ngIf="expandedRows.includes(bill)">keyboard_arrow_up</mat-icon>
+      </button>
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="open menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>dialpad</mat-icon>
+          <span>Option 1</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>voicemail</mat-icon>
+          <span>Option 2</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>notifications_off</mat-icon>
+          <span>Option 3</span>
+        </button>
+      </mat-menu>
+      <button mat-icon-button aria-label="delete row">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let bill" [attr.colspan]="columnsToDisplayWithExpand.length">
+      <pgr-expanded-row [dataSource]="bill.billLine" *ngIf="expandedRows.includes(bill)"
+        class="block w-3/4 my-0 mx-auto" [@detailExpand]="
+          expandedRows.includes(bill) ? 'expanded' : 'collapsed'
+        "></pgr-expanded-row>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+  <tr mat-row *matRowDef="let bill; columns: columnsToDisplayWithExpand"
+    [class.example-expanded-row]="expandedRows.includes(bill)"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="!h-0"></tr>
+</table>

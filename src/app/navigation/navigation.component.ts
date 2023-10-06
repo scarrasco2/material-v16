@@ -12,6 +12,7 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { TableComponent } from '../table/table.component';
 import { TreeComponent } from '../tree/tree.component';
 import { AddressComponent } from '../address/address.component';
+import { BillReviewTableComponent } from '../bill-review-table/bill-review-table.component';
 
 @Component({
   selector: 'app-nav',
@@ -50,6 +51,7 @@ import { AddressComponent } from '../address/address.component';
     TableComponent,
     TreeComponent,
     AddressComponent,
+    BillReviewTableComponent,
   ],
 })
 export class NavigationComponent {

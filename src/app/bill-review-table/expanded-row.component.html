@@ -1,0 +1,72 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!-- Checkbox Column -->
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? toggleAllRows() : null" [checked]="selection.hasValue() && isAllSelected()"
+        [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+        [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+      </mat-checkbox>
+    </td>
+    <td mat-footer-cell *matFooterCellDef>&nbsp;</td>
+  </ng-container>
+
+  <!-- Line Column -->
+  <ng-container matColumnDef="line">
+    <th mat-header-cell *matHeaderCellDef>LINE</th>
+    <td mat-cell *matCellDef="let element;index as i;"> {{ i + 1 }} </td>
+    <td mat-footer-cell *matFooterCellDef class="font-semibold"> Totals </td>
+  </ng-container>
+
+  <!-- DOS Column -->
+  <ng-container matColumnDef="dos">
+    <th mat-header-cell *matHeaderCellDef>DOS</th>
+    <td mat-cell *matCellDef="let element"> {{element.dos}} </td>
+    <td mat-footer-cell *matFooterCellDef>&nbsp;</td>
+  </ng-container>
+
+  <!-- CPT CODE Column -->
+  <ng-container matColumnDef="cptCode">
+    <th mat-header-cell *matHeaderCellDef>CPT Code</th>
+    <td mat-cell *matCellDef="let element"> {{element.cptCode}} </td>
+    <td mat-footer-cell *matFooterCellDef>&nbsp;</td>
+  </ng-container>
+
+  <!-- END NOTES Column -->
+  <ng-container matColumnDef="endNotes">
+    <th mat-header-cell *matHeaderCellDef>END NOTES</th>
+    <td mat-cell *matCellDef="let element"> {{element.endNotes}} </td>
+    <td mat-footer-cell *matFooterCellDef>&nbsp;</td>
+  </ng-container>
+
+  <!-- AMT BILLED Column -->
+  <ng-container matColumnDef="amountBilled">
+    <th mat-header-cell *matHeaderCellDef>AMT BILLED</th>
+    <td mat-cell *matCellDef="let element"> {{element.amountBilled | currency}} </td>
+    <td mat-footer-cell *matFooterCellDef> {{ getTotal('amountBilled') | currency}} </td>
+  </ng-container>
+
+  <!-- PAID Column -->
+  <ng-container matColumnDef="paid">
+    <th mat-header-cell *matHeaderCellDef>PAID</th>
+    <td mat-cell *matCellDef="let element"> {{element.paid | currency}} </td>
+    <td mat-footer-cell *matFooterCellDef> {{ getTotal('paid') | currency}} </td>
+  </ng-container>
+
+  <!-- BALANCE Column -->
+  <ng-container matColumnDef="balance">
+    <th mat-header-cell *matHeaderCellDef>BALANCE</th>
+    <td mat-cell *matCellDef="let element"> {{element.balance | currency}} </td>
+    <td mat-footer-cell *matFooterCellDef> {{ getTotal('balance') | currency}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+  </tr>
+  <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+
+</table>
