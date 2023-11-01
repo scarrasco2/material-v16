@@ -1,0 +1,4 @@
+<p *ngIf="api$ | async as response; else loading">{{response | json}}</p>
+<ng-template #loading>
+  <p>loading...</p>
+</ng-template>

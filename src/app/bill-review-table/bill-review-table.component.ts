@@ -6,6 +6,10 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import {
+  slideInDownOnEnterAnimation,
+  collapseAnimation,
+} from 'angular-animations';
 import { MatIconModule } from '@angular/material/icon';
 import {
   CurrencyPipe,
@@ -42,16 +46,7 @@ import { MOCK_DATA } from './mock-date';
   templateUrl: './bill-review-table.component.html',
   styleUrls: ['./bill-review-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({ height: '0px', minHeight: '0' })),
-      state('expanded', style({ height: '*' })),
-      transition(
-        'expanded <=> collapsed',
-        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
-      ),
-    ]),
-  ],
+  animations: [collapseAnimation()],
 })
 export class BillReviewTableComponent {
   dataSource = MOCK_DATA;

@@ -13,6 +13,8 @@ import { TableComponent } from '../table/table.component';
 import { TreeComponent } from '../tree/tree.component';
 import { AddressComponent } from '../address/address.component';
 import { BillReviewTableComponent } from '../bill-review-table/bill-review-table.component';
+import { ExpansionPanelComponent } from '../expansion-panel/expansion-panel.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-nav',
@@ -52,6 +54,8 @@ import { BillReviewTableComponent } from '../bill-review-table/bill-review-table
     TreeComponent,
     AddressComponent,
     BillReviewTableComponent,
+    ExpansionPanelComponent,
+    HttpClientModule,
   ],
 })
 export class NavigationComponent {

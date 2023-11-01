@@ -1,0 +1,9 @@
+<mat-expansion-panel *ngFor="let item of list">
+  <mat-expansion-panel-header>
+    This is the expansion title
+  </mat-expansion-panel-header>
+
+  <ng-template matExpansionPanelContent>
+    <app-lazy-render></app-lazy-render>
+  </ng-template>
+</mat-expansion-panel>

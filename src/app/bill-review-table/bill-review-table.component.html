@@ -38,9 +38,7 @@
   <ng-container matColumnDef="expandedDetail">
     <td mat-cell *matCellDef="let bill" [attr.colspan]="columnsToDisplayWithExpand.length">
       <pgr-expanded-row [dataSource]="bill.billLine" *ngIf="expandedRows.includes(bill)"
-        class="block w-3/4 my-0 mx-auto" [@detailExpand]="
-          expandedRows.includes(bill) ? 'expanded' : 'collapsed'
-        "></pgr-expanded-row>
+        class="block w-3/4 my-0 mx-auto" [@collapse]></pgr-expanded-row>
     </td>
   </ng-container>
 
