@@ -15,6 +15,8 @@ import { AddressComponent } from '../address/address.component';
 import { BillReviewTableComponent } from '../bill-review-table/bill-review-table.component';
 import { ExpansionPanelComponent } from '../expansion-panel/expansion-panel.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { IsDarkThemeDirective } from '../is-dark-theme.directive';
+import { SelectComponent } from '../select/select.component';
 
 @Component({
   selector: 'app-nav',
@@ -56,6 +58,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     BillReviewTableComponent,
     ExpansionPanelComponent,
     HttpClientModule,
+    IsDarkThemeDirective,
+    SelectComponent,
   ],
 })
 export class NavigationComponent {

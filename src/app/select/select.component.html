@@ -1,0 +1,14 @@
+<mat-form-field>
+  <mat-label>Favorite food</mat-label>
+  <mat-select data-id="select-1">
+    <mat-option *ngFor="let food of foods" [value]="food.value">
+      {{food.viewValue}}
+    </mat-option>
+  </mat-select>
+  <mat-label>Favorite food</mat-label>
+  <mat-select data-id="select-2">
+    <mat-option *ngFor="let food of foods" [value]="food.value">
+      {{food.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
